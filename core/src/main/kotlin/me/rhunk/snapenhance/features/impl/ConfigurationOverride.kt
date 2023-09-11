@@ -1,11 +1,11 @@
 package me.rhunk.snapenhance.features.impl
 
 import de.robv.android.xposed.XposedHelpers
+import me.rhunk.snapenhance.core.util.ktx.setObjectField
 import me.rhunk.snapenhance.features.Feature
 import me.rhunk.snapenhance.features.FeatureLoadParams
 import me.rhunk.snapenhance.hook.HookStage
 import me.rhunk.snapenhance.hook.hook
-import me.rhunk.snapenhance.util.ktx.setObjectField
 
 class ConfigurationOverride : Feature("Configuration Override", loadParams = FeatureLoadParams.INIT_SYNC) {
     override fun init() {
@@ -26,7 +26,6 @@ class ConfigurationOverride : Feature("Configuration Override", loadParams = Fea
             overrideProperty("DF_VOPERA_FOR_STORIES", { state == "VERTICAL_STORY_VIEWER" }, true)
         }
 
-        overrideProperty("SIG_APP_APPEARANCE_SETTING", { context.config.userInterface.enableAppAppearance.get() }, true)
         overrideProperty("SPOTLIGHT_5TH_TAB_ENABLED", { context.config.userInterface.disableSpotlight.get() }, false)
 
         overrideProperty("BYPASS_AD_FEATURE_GATE", { context.config.global.blockAds.get() }, true)
